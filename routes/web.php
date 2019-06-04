@@ -17,7 +17,29 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function() use ($router) {
 
-    $router->post('/register', 'UserController@register');
-    $router->get('/users', 'UserController@show');
+    //users
+    $router->group(['prefix' => 'users'], function() use ($router) {
+
+        $router->get('/', 'UserController@showAll');
+        $router->post('/create', 'UserController@create');        
+    });
+
+    //cars
+    $router->group(['prefix' => 'cars'], function() use ($router) {
+
+        $router->get('/', 'CarController@showAll');  
+        $router->post('/create', 'CarController@create');   
+        $router->get('/', 'CarController@show'); 
+        $router->get('/{id}', 'CarController@show');   
+        $router->post('/{id}', 'CarController@update');   
+    });
+    
+
+    //rentals
+    $router->group(['prefix' => 'rentals'], function() use ($router) {
+
+        $router->get('/', 'RentalController@showAll');  
+        $router->post('/create', 'RentalController@create');   
+    });
 
 });

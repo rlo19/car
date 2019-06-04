@@ -8,7 +8,13 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class UserController extends BaseController
 {
-    public function register(Request $request) {
+
+    public function showAll(Request $request) {
+
+        return response()->json(User::all());
+    }
+
+    public function create(Request $request) {
 
         $this->validate($request, [
             'name' => 'required',
@@ -19,10 +25,6 @@ class UserController extends BaseController
         $user = User::create($request->all());
 
         return response()->json($user, 201);
-    }
-
-    public function show(Request $request) {
-
-        return response()->json(User::all());
-    }
+    }    
+    
 }
