@@ -43,7 +43,10 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     $router->group(['prefix' => 'rentals'], function() use ($router) {
 
         $router->get('/', 'RentalController@showAll');  
-        $router->post('/create', 'RentalController@create');   
+        $router->get('/{id}', 'RentalController@show');
+
+        $router->post('/create', 'RentalController@create');  
+        $router->post('/{id}', 'RentalController@update');  
     });
 
 });
