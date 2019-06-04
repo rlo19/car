@@ -26,5 +26,19 @@ class UserController extends BaseController
 
         return response()->json($user, 201);
     }    
-    
+
+    public function show(Request $request, $id = '') {
+
+        $user = User::find($id);
+
+        return response()->json($user, 200);
+    }
+
+    public function update(Request $request, $id) {
+
+        $user = User::find($id)
+                ->update($request->all());
+
+        return response()->json($user);
+    }
 }

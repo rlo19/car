@@ -21,16 +21,20 @@ $router->group(['prefix' => 'api'], function() use ($router) {
     $router->group(['prefix' => 'users'], function() use ($router) {
 
         $router->get('/', 'UserController@showAll');
-        $router->post('/create', 'UserController@create');        
+        $router->get('/{id}', 'UserController@show');
+
+        $router->post('/create', 'UserController@create'); 
+        $router->post('/{id}', 'UserController@update');       
     });
 
     //cars
     $router->group(['prefix' => 'cars'], function() use ($router) {
 
-        $router->get('/', 'CarController@showAll');  
-        $router->post('/create', 'CarController@create');   
+        $router->get('/', 'CarController@showAll');             
         $router->get('/', 'CarController@show'); 
-        $router->get('/{id}', 'CarController@show');   
+        $router->get('/{id}', 'CarController@show');  
+
+        $router->post('/create', 'CarController@create'); 
         $router->post('/{id}', 'CarController@update');   
     });
     
