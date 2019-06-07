@@ -44,7 +44,7 @@ class CarController extends BaseController
 
     public function update(Request $request, $id) {
 
-        $car = Car::find($id)
+        $car = Car::where("id", $id)
                 ->update($request->all());
 
         return response()->json($car);

@@ -19,7 +19,7 @@ class RentalController extends BaseController
         $this->validate($request, [
             'uid' => 'required|integer',
             'cid' => 'required|integer',
-            'rented_from'  => 'required|date',
+            'rented_from'  => 'required|date|before:rented_to',
             'rented_to'  => 'required|date|after:rented_from',
         ]);
 
@@ -37,7 +37,7 @@ class RentalController extends BaseController
 
     public function update(Request $request, $id) {
 
-        $rental = Rental::find($id)
+        $rental = Rental::where("id", $id)
                 ->update($request->all());
 
         return response()->json($rental);
